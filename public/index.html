@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Manager</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <section id="loginPage" class="login-wrap hidden">
+    <form id="loginForm" class="card login-card">
+      <h1>Employee Manager</h1>
+      <label for="username">Username</label>
+      <input id="username" name="username" value="admin" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" value="admin123" autocomplete="current-password" required>
+      <p id="loginError" class="error hidden" role="alert"></p>
+      <button class="button primary full" type="submit">Sign in</button>
+      <p class="hint">Demo login: admin / admin123</p>
+    </form>
+  </section>
+
+  <main id="mainPage" class="hidden">
+    <header class="topbar">
+      <div><h1>Employee Manager</h1></div>
+      <button id="logoutButton" class="button outline">Log out</button>
+    </header>
+    <div class="container">
+      <span id="welcomeUser" class="user-chip"></span>
+      <p id="toast" class="toast hidden" role="status"></p>
+      <section class="stats" aria-label="Employee statistics">
+        <article class="stat-card"><span>Total employees</span><strong id="total">0</strong></article>
+        <article class="stat-card"><span>Active</span><strong id="active">0</strong></article>
+        <article class="stat-card"><span>Inactive</span><strong id="inactive">0</strong></article>
+        <article class="stat-card"><span>Departments</span><strong id="departments">0</strong></article>
+      </section>
+      <section class="card directory">
+        <div class="directory-head">
+          <button id="addButton" class="button primary">+ Add employee</button>
+          <div class="search-box">
+            <label class="search-label" for="search">Search employees</label>
+            <input id="search" class="search" placeholder="Search by ID, name, department or role">
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Employee</th><th>Department</th><th>Position</th><th>Salary</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="employeeTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="employeeDialog" class="dialog">
+    <form id="employeeForm" class="dialog-card">
+      <h2 id="dialogTitle">Add employee</h2>
+      <button type="button" id="closeDialog" class="icon-button" aria-label="Close">x</button>
+      <input id="editId" type="hidden">
+      <div class="form-grid">
+        <label>Employee ID<input id="employee_id" required></label>
+        <label>Full name<input id="name" required></label>
+        <label>Email<input id="email" type="email" required></label>
+        <label>Phone<input id="phone" required></label>
+        <label>Department<input id="department" required></label>
+        <label>Position<input id="position" required></label>
+        <label>Salary<input id="salary" type="number" min="0" step="0.01" required></label>
+        <label>Status<select id="status"><option>Active</option><option>Inactive</option></select></label>
+      </div>
+      <p id="formError" class="error hidden" role="alert"></p>
+      <div class="dialog-actions">
+        <button type="button" id="cancelButton" class="button secondary">Cancel</button>
+        <button class="button primary" type="submit">Save employee</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
